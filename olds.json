@@ -1,0 +1,39 @@
+{"_id":{"$oid":"59322b8c565c725393d27557"},"name":"Genesis","chapters":50.0}
+{"_id":{"$oid":"59322b99565c725393d27558"},"name":"Exodus","chapters":40.0}
+{"_id":{"$oid":"59322ba5565c725393d27559"},"name":"Leviticus","chapters":27.0}
+{"_id":{"$oid":"59322bb1565c725393d2755a"},"name":"Numbers","chapters":36.0}
+{"_id":{"$oid":"59322bbc565c725393d2755b"},"name":"Deuteronomy","chapters":34.0}
+{"_id":{"$oid":"59322bd7565c725393d2755c"},"name":"Joshua","chapters":24.0}
+{"_id":{"$oid":"59322be1565c725393d2755d"},"name":"Judges","chapters":21.0}
+{"_id":{"$oid":"59322bec565c725393d2755e"},"name":"Ruth","chapters":4.0}
+{"_id":{"$oid":"59322bf9565c725393d2755f"},"name":"1 Samuel","chapters":31.0}
+{"_id":{"$oid":"59322c03565c725393d27560"},"name":"2 Samuel","chapters":24.0}
+{"_id":{"$oid":"59322c10565c725393d27561"},"name":"1 Kings","chapters":22.0}
+{"_id":{"$oid":"59322c1d565c725393d27562"},"name":"2 Kings","chapters":25.0}
+{"_id":{"$oid":"59322c2c565c725393d27563"},"name":"1 Chronicles","chapters":29.0}
+{"_id":{"$oid":"59322c38565c725393d27564"},"name":"2 Chronicles","chapters":36.0}
+{"_id":{"$oid":"59322c44565c725393d27565"},"name":"Ezra","chapters":10.0}
+{"_id":{"$oid":"59322c4f565c725393d27566"},"name":"Nehemiah","chapters":13.0}
+{"_id":{"$oid":"59322c5a565c725393d27567"},"name":"Esther","chapters":10.0}
+{"_id":{"$oid":"59322c6e565c725393d27568"},"name":"Job","chapters":42.0}
+{"_id":{"$oid":"59322c78565c725393d27569"},"name":"Psalms","chapters":150.0}
+{"_id":{"$oid":"59322c82565c725393d2756a"},"name":"Proverbs","chapters":31.0}
+{"_id":{"$oid":"59322c8e565c725393d2756b"},"name":"Ecclesiastes","chapters":12.0}
+{"_id":{"$oid":"59322c9b565c725393d2756c"},"name":"Song of Solomon","chapters":8.0}
+{"_id":{"$oid":"59322ca9565c725393d2756d"},"name":"Isaiah","chapters":66.0}
+{"_id":{"$oid":"59322cb4565c725393d2756e"},"name":"Jeremiah","chapters":52.0}
+{"_id":{"$oid":"59322cc0565c725393d2756f"},"name":"Lamentations","chapters":5.0}
+{"_id":{"$oid":"59322cce565c725393d27570"},"name":"Ezekiel","chapters":48.0}
+{"_id":{"$oid":"59322cdd565c725393d27571"},"name":"Daniel","chapters":12.0}
+{"_id":{"$oid":"59322cee565c725393d27572"},"name":"Hosea","chapters":14.0}
+{"_id":{"$oid":"59322cf7565c725393d27573"},"name":"Joel","chapters":3.0}
+{"_id":{"$oid":"59322d00565c725393d27574"},"name":"Amos","chapters":9.0}
+{"_id":{"$oid":"59322d0a565c725393d27575"},"name":"Obadiah","chapters":1.0}
+{"_id":{"$oid":"59322d12565c725393d27576"},"name":"Jonah","chapters":4.0}
+{"_id":{"$oid":"59322d1d565c725393d27577"},"name":"Micah","chapters":7.0}
+{"_id":{"$oid":"59322d2c565c725393d27578"},"name":"Nahum","chapters":3.0}
+{"_id":{"$oid":"59322d37565c725393d27579"},"name":"Habakkuk","chapters":3.0}
+{"_id":{"$oid":"59322d40565c725393d2757a"},"name":"Zephaniah","chapters":3.0}
+{"_id":{"$oid":"59322d4a565c725393d2757b"},"name":"Haggai","chapters":2.0}
+{"_id":{"$oid":"59322d55565c725393d2757c"},"name":"Zecharaiah","chapters":14.0}
+{"_id":{"$oid":"59322d60565c725393d2757d"},"name":"Malachi","chapters":4.0}

@@ -31,28 +31,28 @@ var AuthService = (function () {
     AuthService.prototype.registerUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:3000/users/register', user, { headers: headers })
-            .map(function (res) { return res.json(); });
-        //return this.http.post('users/register', user, {headers: headers})
+        //return this.http.post('http://localhost:3000/users/register', user, {headers: headers})
         //  .map(res => res.json());
+        return this.http.post('users/register', user, { headers: headers })
+            .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers })
-            .map(function (res) { return res.json(); });
-        //return this.http.post('users/authenticate', user, {headers: headers})
+        //return this.http.post('http://localhost:3000/users/authenticate', user, {headers: headers})
         //  .map(res => res.json());
+        return this.http.post('users/authenticate', user, { headers: headers })
+            .map(function (res) { return res.json(); });
     };
     AuthService.prototype.getProfile = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:3000/users/profile', { headers: headers })
-            .map(function (res) { return res.json(); });
-        //return this.http.get('users/profile', {headers: headers})
+        //return this.http.get('http://localhost:3000/users/profile', {headers: headers})
         //  .map(res => res.json());
+        return this.http.get('users/profile', { headers: headers })
+            .map(function (res) { return res.json(); });
     };
     AuthService.prototype.loadToken = function () {
         var token = localStorage.getItem('id_token');
@@ -1350,7 +1350,9 @@ var ReadingListService = (function () {
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:3000/reading/oldbooks', { headers: headers })
+        //return this.http.get('http://localhost:3000/reading/oldbooks', {headers: headers})
+        //  .map(res => res.json());
+        return this.http.get('reading/oldbooks', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ReadingListService.prototype.getNewTestament = function () {
@@ -1359,7 +1361,9 @@ var ReadingListService = (function () {
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:3000/reading/newbooks', { headers: headers })
+        //return this.http.get('http://localhost:3000/reading/newbooks', {headers: headers})
+        //  .map(res => res.json());
+        return this.http.get('reading/newbooks', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ReadingListService.prototype.loadToken = function () {
@@ -1369,7 +1373,9 @@ var ReadingListService = (function () {
     ReadingListService.prototype.saveReading = function (reading) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:3000/reading/save', reading, { headers: headers })
+        //return this.http.post('http://localhost:3000/reading/save', reading, {headers: headers})
+        //  .map(res => res.json());
+        return this.http.post('reading/save', reading, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     ReadingListService.prototype.getReadingLog = function () {
@@ -1377,7 +1383,9 @@ var ReadingListService = (function () {
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:3000/reading/load', { headers: headers })
+        //return this.http.get('http://localhost:3000/reading/load', {headers: headers})
+        //  .map(res => res.json());
+        return this.http.get('reading/load', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     return ReadingListService;
