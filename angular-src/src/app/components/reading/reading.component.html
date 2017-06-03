@@ -1,0 +1,26 @@
+<div class="well">
+  <label style='padding-right: 10px'>Enter Your Reading!</label>
+  <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
+  <div class="dropdown" dropdown style="display: inline">
+    <button class="btn btn-default" dropdown-open>{{ selTest }}</button>
+    <ul class="dropdown-menu">
+        <li><a class="btn btn-default" (click)="selectTest('Old Testament')">Old Testament</a></li>
+        <li><a class="btn btn-default" (click)="selectTest('New Testament')">New Testament</a></li>
+    </ul>
+  </div>
+  <div class="dropdown" dropdown style="display: inline">
+    <button class="btn btn-default" [disabled]="selTest == 'Select Testament'" dropdown-open>{{ selBook }}</button>
+    <ul class="dropdown-menu">
+        <li *ngIf="selTest == 'Old Testament'"><a class="btn btn-default" *ngFor="let book of oldTestament" (click)="selectBook(book.name)">{{book.name}}</a></li>
+        <li *ngIf="selTest == 'New Testament'"><a class="btn btn-default" *ngFor="let book of newTestament" (click)="selectBook(book.name)">{{book.name }}</a></li>
+    </ul>
+  </div>
+  <div class="dropdown" dropdown style="display: inline">
+    <button class="btn btn-default" [disabled]="selBook == 'Select Book'" dropdown-open>{{ selChapter }}</button>
+    <ul class="dropdown-menu">
+        <li><a *ngFor="let chapter of numChapters" class="btn btn-default" (click)="selectChapter(chapter)">{{chapter}}</a></li>
+    </ul>
+  </div>
+
+  <button class="btn btn-primary" [disabled]="selChapter == 'Select Chapter' || date == undefined" (click)="dateSubmit()">Log Reading</button>
+</div>
