@@ -42,7 +42,6 @@ export class ReadingComponent implements OnInit {
     }
     this.readingList.getOldTestament().subscribe(books => {
         this.oldTestament = books.stash;
-        alert(JSON.stringify(books));
       }),
       err => {
         console.log(err);
