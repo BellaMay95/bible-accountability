@@ -611,7 +611,6 @@ var ReadingComponent = (function () {
             };
         this.readingList.getOldTestament().subscribe(function (books) {
             _this.oldTestament = books.stash;
-            alert(JSON.stringify(books));
         }),
             function (err) {
                 console.log(err);
