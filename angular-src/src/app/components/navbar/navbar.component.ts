@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { CollapseDirective } from 'ngx-bootstrap';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
@@ -9,6 +10,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  public isCollapsed:boolean = true;
 
   constructor(
     private authService: AuthService,

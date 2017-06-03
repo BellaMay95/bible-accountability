@@ -1,27 +1,80 @@
-<nav class="navbar navbar-inverse bg-inverse">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+<nav class="navbar navbar-inverse"> <!--navbar-inverse bg-inverse">-->
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Bible Accountability</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse" [collapse]="isCollapsed">
+      <ul class="nav navbar-nav navbar-left">
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/']">Home</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/dashboard']">Dashboard</a></li>
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/profile']">Profile</a></li>
+        
+        <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/login']">Login</a></li>
+        <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/register']">Register</a></li>
+        <li *ngIf="authService.loggedIn()"><a (click)="onLogoutClick()" href="#">Logout</a></li>
+      </ul>
+    </div> 
+  </div>
+</nav>
+
+<!--<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Bible Accountability</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-left">
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/']">Home</a></li>
-          </ul>
+        </button>
+        <!--<a class="navbar-brand" href="#">
+            <img src="/logo.png" />
+        </a>-
+    </div>
 
-          <ul class="nav navbar-nav navbar-right">
-            <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/dashboard']">Dashboard</a></li>
-            <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/profile']">Profile</a></li>
-            
-            <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/login']">Login</a></li>
-            <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/register']">Register</a></li>
-            <li *ngIf="authService.loggedIn()"><a (click)="onLogoutClick()" href="#">Logout</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" [collapse]="isCollapsed">
+        <ul class="nav navbar-nav">
+            <li router-active>
+                <a [routerLink]=" ['Index'] ">Summary<span class="sr-only">(current)</span></a>
+            </li>
+            <li router-active>
+                <a [routerLink]=" ['Portfolio'] ">Portfolio<span class="sr-only">(current)</span></a>
+            </li>
+            <li router-active>
+                <a [routerLink]=" ['About'] ">About<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            <li dropdown keyboardNav="true">
+                <a href class="dropdown-toggle" role="button" aria-expanded="false" dropdownToggle>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    Andrew Duncan 
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li role="menuitem"><a class="dropdown-item" href="#">Account Settings</a></li>
+                    <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+                    <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li class="divider dropdown-divider"></li>
+                    <li role="menuitem"><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</div>-->

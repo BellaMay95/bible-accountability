@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes} from '@angular/router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { DatePickerModule } from 'ng2-datepicker';
-import {DropdownModule} from "ngx-dropdown";
+import { DropdownModule } from "ngx-dropdown";
+import { CollapseDirective } from 'ngx-bootstrap'
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     ProfileComponent,
     ReadingComponent,
-    LogComponent
+    LogComponent,
+    CollapseDirective
   ],
   imports: [
     BrowserModule,
