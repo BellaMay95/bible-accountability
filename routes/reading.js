@@ -24,9 +24,22 @@ router.post('/save', (req, res, next) => {
     });
 });
 
+//Remove Reading
+router.post('/remove', (req, res, next) => {
+    let id = req.body._id;
+    Reading.removeReading(id, (err, reading) => {
+        if (err) {
+            res.json({success: false, message: "Failed to remove reading"});
+        }
+        else {
+            res.json({success: true, message: "Reading removed!"});
+        }
+    });
+});
+
 //Load History
 router.get('/load', (req, res, next) => {
-    const id = req.body.id;
+    const id = req.headers.user_id;
 
     Reading.getReadingList(id, (err, reading) => {
         if (err) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePickerOptions, DateModel } from 'ng2-datepicker';
-import { DropdownModule } from "ngx-dropdown";
+//import { DropdownModule } from "ngx-dropdown";
+import { BsDropdownModule } from 'ngx-bootstrap';
 import { Router } from '@angular/router';
 
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -87,11 +88,9 @@ export class ReadingComponent implements OnInit {
     this.selChapter = chapter;
   }
 
-  dateSubmit() {
-    //alert("Can't submit readings yet!");
-    let date_format: String = this.date.month + "-" + this.date.day + "-" + this.date.year;
+  saveEntry() {
     const reading = {
-      date: date_format,
+      date: this.date,
       book: this.selBook,
       chapter: this.selChapter,
       id: this.user.id
@@ -99,7 +98,6 @@ export class ReadingComponent implements OnInit {
 
     this.readingList.saveReading(reading).subscribe(data => {
       if(data.success) {
-        //this.flashMessage.show("You are now registered and you may log in!", {cssClass: 'alert-success', timeout: 10000});
         this.flashMessage.show(data.message, {cssClass: 'alert-success', timeout: 10000});
         this.router.navigate(['/home']);
       }

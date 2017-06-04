@@ -5,8 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes} from '@angular/router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { DatePickerModule } from 'ng2-datepicker';
-import { DropdownModule } from "ngx-dropdown";
-import { CollapseDirective } from 'ngx-bootstrap'
+//import { DropdownModule } from "ngx-dropdown";
+import { CollapseDirective, BsDropdownModule } from 'ngx-bootstrap'
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -52,7 +52,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule,
     DatePickerModule,
-    DropdownModule
+    //DropdownModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [ValidateService, AuthService, AuthGuard, ReadingListService],
   bootstrap: [AppComponent]

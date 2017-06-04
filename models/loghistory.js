@@ -4,8 +4,26 @@ const config = require('../config/database');
 //User Schema
 const ReadingSchema = mongoose.Schema({
     date: {
-        type: String,
-        required: true
+        day: { 
+            type: String,
+            required: true
+        },
+        month: {
+            type: String,
+            required: true
+        },
+        year: {
+            type: String,
+            required: true
+        },
+        formatted: {
+            type: String,
+            required: true
+        },
+        moment: {
+            type: String,
+            required: false
+        }
     },
     book: {
         type: String,
@@ -27,7 +45,11 @@ module.exports.logReading = function(reading, callback) {
     reading.save(callback);
 }
 
+module.exports.removeReading = function(id, callback) {
+    Reading.findByIdAndRemove(id, callback);
+}
+
 module.exports.getReadingList = function(id, callback) {
     const query = {user_id: id};
-    Reading.find(query, callback);
+    Reading.find(query, callback)//.sort({date: -1}, callback);
 }
