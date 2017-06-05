@@ -90,4 +90,18 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
     res.json({user: req.user});
 });
 
+router.get('/userlist', (req, res, next) => {
+    User.getUserList((err, user) => {
+        if (err)
+            throw err;
+        else {
+            //console.log(user);
+            for(let i = 0; i < user.length; i++) {
+                user[i].password = undefined;
+            }
+            res.json({UserList: user});
+        }
+    })
+})
+
 module.exports = router;
