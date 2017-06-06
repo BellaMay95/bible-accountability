@@ -9,17 +9,18 @@ import { CollapseDirective, BsDropdownModule, TypeaheadModule, ModalModule, Tabs
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { LoginComponent } from './components/profiles/login/login.component';
+import { RegisterComponent } from './components/profiles/register/register.component';
 import { HomeComponent } from './components/home/home.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { ReadingComponent } from './components/reading/reading.component';
-import { LogComponent } from './components/log/log.component';
-import { FriendListComponent } from './components/friendlist/friendlist.component';
-import { AddFriendComponent } from './components/add-friend/add-friend.component';
-import { PendingFriendComponent } from './components/pendingfriend/pendingfriend.component';
-//import { FriendProfileComponent } from './components/friendprofile/friendprofile.component';
+import { DashboardComponent } from './components/profiles/dashboard/dashboard.component';
+import { ProfileComponent } from './components/profiles/profile/profile.component';
+import { ReadingComponent } from './components/readings/reading/reading.component';
+import { LogComponent } from './components/readings/log/log.component';
+import { FriendListComponent } from './components/friends/friendlist/friendlist.component';
+import { AddFriendComponent } from './components/friends/add-friend/add-friend.component';
+import { PendingFriendComponent } from './components/friends/pendingfriend/pendingfriend.component';
+//import { FriendProfileComponent } from './components/friends/friendprofile/friendprofile.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
@@ -29,6 +30,7 @@ import { FriendService } from './services/friend.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'contact', component: ContactComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -52,7 +54,8 @@ const appRoutes: Routes = [
     CollapseDirective,
     FriendListComponent,
     AddFriendComponent,
-    PendingFriendComponent//,
+    PendingFriendComponent,
+    ContactComponent//,
     //FriendProfileComponent
   ],
   imports: [

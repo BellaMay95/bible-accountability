@@ -1,0 +1,16 @@
+<div class="well">
+  <h4>Submitted Requests</h4>
+    
+    <div class="list-group">
+      <span class="list-group-item" *ngIf="subRequests.length == 0">You have no unanswered friend requests!</span>
+      <span class="list-group-item" *ngFor="let sent of subRequests">Name: {{ sent.friendUser.name }} -- Username: {{ sent.friendUser.username }} -- Date: {{ sent.timestamp }}</span>
+    </div>
+  <h4>Received Requests</h4>
+    <div class="list-group">
+      <span class="list-group-item" *ngIf="recvRequests.length == 0">You have no pending friend requests!</span>
+      <span class="list-group-item" *ngFor="let recv of recvRequests">Name: {{ recv.sendUser.name }} -- Username: {{ recv.sendUser.username }} -- Date: {{ recv.timestamp }}
+        <button (click)="rejectRequest(recv)" class="btn btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button>
+        <button (click)="acceptRequest(recv)" class="btn btn-xs pull-right" style="margin-right: 5px"><span class="glyphicon glyphicon-ok"></span></button>
+      </span>
+    </div>
+</div>

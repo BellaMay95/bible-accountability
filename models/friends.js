@@ -17,10 +17,32 @@ const PendingRequestSchema = mongoose.Schema({
     }
 });
 
+const AcceptedRequestSchema = mongoose.Schema({
+    user1: {
+        type: Object,
+        required: true
+    },
+    user2: {
+        type: Object,
+        required: true
+    },
+    reqtimestamp: {
+        type: Object,
+        required: false
+    },
+    acctimestamp: {
+        type: Object,
+        required: false
+    }
+})
+
 const PendingRequest = module.exports = mongoose.model('pendingrequest', PendingRequestSchema);
+const AcceptRequest = module.exports = mongoose.model('friend', AcceptedRequestSchema);
 
 module.exports.addPending = function(request, callback) {
-    request.save(callback);
+    //console.log(request);
+    let pending = new PendingRequest(request);
+    pending.save(callback);
 }
 
 module.exports.getSubPending = function(id, callback) {
@@ -29,10 +51,26 @@ module.exports.getSubPending = function(id, callback) {
 }
 
 module.exports.getRecvPending = function(id, callback) {
-    let query = {"friendUser._id": id};
+    let query = {"friendUser.id": id};
     PendingRequest.find(query, callback);
 }
 
 module.exports.rejectRequest = function(id, callback) {
     PendingRequest.findByIdAndRemove(id, callback);
+}
+
+module.exports.acceptRequest = function(friends, callback) {
+    //console.log(friends);
+    let request = new AcceptRequest(friends);
+    request.save(callback);
+}
+
+module.exports.getFriendsList = function(id, callback) {
+    let query = {
+      $or: [
+          { "user1.id": id },
+          { "user2.id": id }
+      ]
+    }
+    AcceptRequest.find(query, callback);
 }

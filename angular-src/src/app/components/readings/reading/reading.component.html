@@ -1,0 +1,34 @@
+<div class="well">
+  <label style='padding-right: 10px'>Enter Your Reading!</label>
+  <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
+  <div class="btn-group" dropdown>
+    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+      {{selTest}} <span class="caret"></span>
+    </button>
+    <ul *dropdownMenu class="dropdown-menu" role="menu">
+      <li role="menuitem"><a class="dropdown-item" (click)="selectTest('Old Testament')">Old Testament</a></li>
+      <li role="menuitem"><a class="dropdown-item" (click)="selectTest('New Testament')">New Testament</a></li>
+    </ul>
+  </div>
+  <div class="btn-group" dropdown [isDisabled]="selTest == 'Select Testament'">
+    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+      {{selBook}} <span class="caret"></span>
+    </button>
+    <ul *dropdownMenu class="dropdown-menu" role="menu">
+      <li role="menuitem" *ngIf="selTest == 'Old Testament'"><a class="dropdown-item" *ngFor="let book of oldTestament" (click)="selectBook(book.name)">{{book.name}}</a></li>
+      <li role="menuitem" *ngIf="selTest == 'New Testament'"><a class="dropdown-item" *ngFor="let book of newTestament" (click)="selectBook(book.name)">{{book.name}}</a></li>
+    </ul>
+  </div>
+  <div class="btn-group" dropdown [isDisabled]="selBook == 'Select Book'">
+    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+      {{selChapter}} <span class="caret"></span>
+    </button>
+    <ul *dropdownMenu class="dropdown-menu" role="menu">
+      <li role="menuitem"><a class="dropdown-item" *ngFor="let chapter of numChapters" (click)="selectChapter(chapter)">{{chapter}}</a></li>
+    </ul>
+  </div>
+
+  <button class="btn btn-primary" [disabled]="selChapter == 'Select Chapter' || date == undefined" (click)="saveEntry()">Log Reading</button>
+</div>
+
+<!--<li class="divider dropdown-divider"></li>-->

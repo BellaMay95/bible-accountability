@@ -9,7 +9,7 @@ const config = require('./config/database.js');
 //Connect to database
 mongoose.connect(config.database);
 mongoose.connection.on('connected', () => {
-    console.log('Connected to Database ' + config.database);
+    //console.log('Connected to Database ' + config.database);
 });
 
 mongoose.connection.on('error', (err) => {
