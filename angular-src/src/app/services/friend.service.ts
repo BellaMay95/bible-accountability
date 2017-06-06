@@ -14,8 +14,8 @@ export class FriendService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:8080/users/userlist', {headers: headers}).map(res => res.json());
-    //return this.http.get('users/userlist', {headers: headers}).map(res => res.json());
+    //return this.http.get('http://localhost:8080/users/userlist', {headers: headers}).map(res => res.json());
+    return this.http.get('users/userlist', {headers: headers}).map(res => res.json());
   }
 
   submitFriendRequest(friend) {
@@ -28,8 +28,8 @@ export class FriendService {
     //alert(JSON.stringify(requestObj));
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8080/friend/sendRequest', requestObj, {headers: headers}).map(res => res.json());
-    //return this.http.post('friend/sendRequest', requestObj, {headers: headers}).map(res => res.json());
+    //return this.http.post('http://localhost:8080/friend/sendRequest', requestObj, {headers: headers}).map(res => res.json());
+    return this.http.post('friend/sendRequest', requestObj, {headers: headers}).map(res => res.json());
   }
 
   getSubReq() {
@@ -39,8 +39,8 @@ export class FriendService {
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
     headers.append('User_Id', user.id);
-    return this.http.get('http://localhost:8080/friend/getsubpending', {headers: headers}).map(res => res.json());
-    //return this.http.get('friend/getsubpending', {headers: headers}).map(res => res.json());
+    //return this.http.get('http://localhost:8080/friend/getsubpending', {headers: headers}).map(res => res.json());
+    return this.http.get('friend/getsubpending', {headers: headers}).map(res => res.json());
   }
 
   getRecvReq() {
@@ -50,22 +50,22 @@ export class FriendService {
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
     headers.append('User_Id', user.id);
-    return this.http.get('http://localhost:8080/friend/getrecvpending', {headers: headers}).map(res => res.json());
-    //return this.http.get('friend/getrecvpending', {headers: headers}).map(res => res.json());
+    //return this.http.get('http://localhost:8080/friend/getrecvpending', {headers: headers}).map(res => res.json());
+    return this.http.get('friend/getrecvpending', {headers: headers}).map(res => res.json());
   }
 
   rejectRequest(request) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8080/friend/rejrequest', request, {headers: headers}).map(res => res.json());
-    //return this.http.post('friend/rejrequest', request, {headers: headers}).map(res => res.json());
+    //return this.http.post('http://localhost:8080/friend/rejrequest', request, {headers: headers}).map(res => res.json());
+    return this.http.post('friend/rejrequest', request, {headers: headers}).map(res => res.json());
   }
 
   acceptRequest(request) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8080/friend/accrequest', request, {headers: headers}).map(res => res.json());
-    //return this.http.post('friend/accrequest', request, {headers: headers}).map(res => res.json());
+    //return this.http.post('http://localhost:8080/friend/accrequest', request, {headers: headers}).map(res => res.json());
+    return this.http.post('friend/accrequest', request, {headers: headers}).map(res => res.json());
   }
 
   getFriends() {
@@ -75,8 +75,8 @@ export class FriendService {
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
     headers.append('User_Id', user.id);
-    return this.http.get('http://localhost:8080/friend/getfriends', {headers: headers}).map(res => res.json());
-    //return this.http.get('friend/getfriends', {headers: headers}).map(res => res.json());
+    //return this.http.get('http://localhost:8080/friend/getfriends', {headers: headers}).map(res => res.json());
+    return this.http.get('friend/getfriends', {headers: headers}).map(res => res.json());
   }
 
   loadToken() {
