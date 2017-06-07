@@ -9,7 +9,7 @@ const config = require('./config/database.js');
 //Connect to database
 mongoose.connect(config.database);
 mongoose.connection.on('connected', () => {
-    console.log('Connected to Database ' + config.database);
+    //console.log('Connected to Database ' + config.database);
 });
 
 mongoose.connection.on('error', (err) => {
@@ -20,6 +20,7 @@ const app = express();
 
 const users = require('./routes/users');
 const reading = require('./routes/reading');
+const friend = require('./routes/friend');
 
 //Port Number
 //const port = 3000;
@@ -42,6 +43,7 @@ require('./config/passport')(passport);
 
 app.use('/users', users);
 app.use('/reading', reading);
+app.use('/friend', friend);
 
 //index route
 app.get('/', (req, res) => {

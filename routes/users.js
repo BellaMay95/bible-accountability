@@ -17,6 +17,7 @@ router.post('/register', (req, res, next) => {
 
     User.getUserByUsername(req.body.username, (err, user) => {
         if (err) {
+            console.log(err);
             throw err;
         }
         else if (user) {
@@ -25,6 +26,7 @@ router.post('/register', (req, res, next) => {
         else {
             User.getUserByEmail(req.body.email, (err, user) => {
                 if(err) {
+                    console.log(err);
                     throw err;
                 }
                 else if (user) {
@@ -33,6 +35,7 @@ router.post('/register', (req, res, next) => {
                 else {
                     User.addUser(newUser, (err, user) => {
                         if(err) {
+                            console.log(err);
                             res.json({success: false, message: "Failed to register user"});
                         }
                         else {
@@ -52,6 +55,7 @@ router.post('/authenticate', (req, res, next) => {
 
     User.getUserByUsername(username, (err, user) => {
         if(err) {
+            console.log(err);
             throw err;
         }
         if(!user) {
@@ -59,8 +63,10 @@ router.post('/authenticate', (req, res, next) => {
         }
         
         User.comparePassword(password, user.password, (err, isMatch) => {
-            if(err)
+            if(err) {
+                console.log(err);
                 throw err;
+            }
             if(isMatch) {
                 const token = jwt.sign(user, config.secret, {
                     expiresIn: 3600 //1 hour
@@ -88,6 +94,36 @@ router.post('/authenticate', (req, res, next) => {
 // Profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     res.json({user: req.user});
+});
+
+router.get('/userlist', (req, res, next) => {
+    User.getUserList((err, user) => {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        else {
+            //console.log(user);
+            for(let i = 0; i < user.length; i++) {
+                user[i].password = undefined;
+            }
+            res.json({UserList: user});
+        }
+    })
+});
+
+router.get('/getfriendprofile', (req, res, next) => {
+    let friend = req.headers.user_name
+    User.getUserByUsername(friend, (err, user) => {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        else {
+            user.password = undefined;
+            res.json({friend: user});
+        }
+    })
 });
 
 module.exports = router;

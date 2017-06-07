@@ -19,10 +19,8 @@ export class ReadingListService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    //return this.http.get('http://localhost:8080/reading/oldbooks', {headers: headers})
-    //  .map(res => res.json());
-    return this.http.get('reading/oldbooks', {headers: headers})
-      .map(res => res.json());
+    //return this.http.get('http://localhost:8080/reading/oldbooks', {headers: headers}).map(res => res.json());
+    return this.http.get('reading/oldbooks', {headers: headers}).map(res => res.json());
   }
   getNewTestament() {
     //return this.newTestament;
@@ -30,10 +28,8 @@ export class ReadingListService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    //return this.http.get('http://localhost:8080/reading/newbooks', {headers: headers})
-    //  .map(res => res.json());
-    return this.http.get('reading/newbooks', {headers: headers})
-      .map(res => res.json());
+    //return this.http.get('http://localhost:8080/reading/newbooks', {headers: headers}).map(res => res.json());
+    return this.http.get('reading/newbooks', {headers: headers}).map(res => res.json());
   }
 
   loadToken() {
@@ -46,31 +42,24 @@ export class ReadingListService {
     reading.id = user.id;
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    //return this.http.post('http://localhost:8080/reading/save', reading, {headers: headers})
-    //  .map(res => res.json());
-    return this.http.post('reading/save', reading, {headers: headers})
-      .map(res => res.json());
+    //return this.http.post('http://localhost:8080/reading/save', reading, {headers: headers}).map(res => res.json());
+    return this.http.post('reading/save', reading, {headers: headers}).map(res => res.json());
   }
 
   removeReading(item) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    //return this.http.post('http://localhost:8080/reading/remove', item, {headers: headers})
-    //  .map(res => res.json());
-    return this.http.post('reading/remove', item, {headers: headers})
-      .map(res => res.json());
+    //return this.http.post('http://localhost:8080/reading/remove', item, {headers: headers}).map(res => res.json());
+    return this.http.post('reading/remove', item, {headers: headers}).map(res => res.json());
   }
 
-  getReadingLog() {
-    let user = JSON.parse(localStorage.getItem('user'));
+  getReadingLog(user) {
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    headers.append('User_Id', user.id);
-    //return this.http.get('http://localhost:8080/reading/load', {headers: headers})
-    //  .map(res => res.json());
-    return this.http.get('reading/load', {headers: headers})
-      .map(res => res.json());
+    headers.append('User_Id', user._id);
+    //return this.http.get('http://localhost:8080/reading/load', {headers: headers}).map(res => res.json());
+    return this.http.get('reading/load', {headers: headers}).map(res => res.json());
   }
 }

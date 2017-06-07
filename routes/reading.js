@@ -16,6 +16,7 @@ router.post('/save', (req, res, next) => {
 
     Reading.logReading(newReading, (err, reading) => {
         if (err) {
+            console.log(err);
             res.json({success: false, message: "Failed to log reading"});
         }
         else {
@@ -29,6 +30,7 @@ router.post('/remove', (req, res, next) => {
     let id = req.body._id;
     Reading.removeReading(id, (err, reading) => {
         if (err) {
+            console.log(err);
             res.json({success: false, message: "Failed to remove reading"});
         }
         else {
@@ -43,6 +45,7 @@ router.get('/load', (req, res, next) => {
 
     Reading.getReadingList(id, (err, reading) => {
         if (err) {
+            console.log(err);
             throw err;
         }
         if (!reading) {
@@ -58,6 +61,7 @@ router.get('/load', (req, res, next) => {
 router.get('/oldbooks', (req, res, next) => {
     List.getOldTestament( (err, list) => {
         if (err) {
+            console.log(err);
             throw err;
         }
         if (!list) {
@@ -73,6 +77,7 @@ router.get('/oldbooks', (req, res, next) => {
 router.get('/newbooks', (req, res, next) => {
     List.getNewTestament( (err, list) => {
         if (err) {
+            console.log(err);
             throw err;
         }
         if (!list) {

@@ -1,0 +1,60 @@
+<div class="well">
+<label>Search by Username: </label>
+  <input [(ngModel)]="asyncSelectedUser"
+         [typeahead]="userdataSource"
+         (typeaheadLoading)="changeTypeaheadLoading($event)"
+         (typeaheadNoResultsUser)="changeTypeaheadNoResultsUser($event)"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         typeaheadOptionsLimit="20"
+         typeaheadOptionField="username"
+         placeholder="Enter Username..."
+         class="form-control">
+  <div *ngIf="typeaheadLoading===true">
+    <i class="glyphicon glyphicon-refresh ng-hide"></i>
+  </div>
+  <div *ngIf="typeaheadNoResults===true">
+    <i class="glyphicon glyphicon-remove"></i> No Results Found
+  </div>
+
+  <hr>
+
+<label>Search by Email: </label>
+  <input [(ngModel)]="asyncSelectedEmail"
+         [typeahead]="emaildataSource"
+         (typeaheadLoading)="changeTypeaheadLoading($event)"
+         (typeaheadNoResultsEmail)="changeTypeaheadNoResultsEmail($event)"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         typeaheadOptionsLimit="20"
+         typeaheadOptionField="email"
+         placeholder="Enter Email..."
+         class="form-control">
+  <div *ngIf="typeaheadLoading===true">
+    <i class="glyphicon glyphicon-refresh ng-hide"></i>
+  </div>
+  <div *ngIf="typeaheadNoResults===true">
+    <i class="glyphicon glyphicon-remove"></i> No Results Found
+  </div>
+</div>
+
+<!--<button type="button" class="btn btn-primary" (click)="showModal()">Render auto-shown modal</button>-->
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">User Details</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Name: {{userSelect.name }}</p>
+        <p>Username: {{userSelect.username}} </p>
+        <p>Email: {{userSelect.email}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-right" (click)="addFriend()">Add Friend</button>
+        <button type="button" class="btn btn-default pull-right" (click)="viewProfile()">View Profile</button>
+      </div>
+    </div>
+  </div>
+</div>

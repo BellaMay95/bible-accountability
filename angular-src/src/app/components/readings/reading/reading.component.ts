@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 
 import { FlashMessagesService } from 'angular2-flash-messages';
 
-import { ReadingListService } from '../../services/readinglist.service';
-import { AuthService } from '../../services/auth.service';
+import { ReadingListService } from '../../../services/readinglist.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-reading',

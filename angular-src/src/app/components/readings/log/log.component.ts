@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ReadingListService } from '../../services/readinglist.service';
+import { ReadingListService } from '../../../services/readinglist.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 //import { AuthService } from '../../services/auth.service';
-import '../../services/objSort';
+import '../../../services/objSort';
 
 @Component({
   selector: 'app-log',
@@ -22,7 +22,8 @@ export class LogComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.readingList.getReadingLog().subscribe(reading => {
+    let user = JSON.parse(localStorage.getItem('user'));
+    this.readingList.getReadingLog(user).subscribe(reading => {
       let newobject = this.prettyDate(reading.reading);
       this.log = newobject;
       this.log.objSort("formatted",-1);
