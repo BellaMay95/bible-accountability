@@ -101,4 +101,26 @@ router.get('/getfriends', (req, res, next) => {
     })
 });
 
+router.get('/isfriend', (req, res, next) => {
+    //console.log(req.headers);
+    const friendName = req.headers.friend_name;
+    const userName = req.headers.user_name;
+
+    Friend.isFriend(friendName, userName, (err, friend) => {
+        //console.log(friend);
+        if (err) {
+            console.log(err);
+            res.json({success: false, message: err});
+        }
+        else if (friend.length > 0) {
+            //console.log("success!");
+            res.json({success: true, message: "found friend"});
+        }
+        else {
+            //console.log("failure!");
+            res.json({success: false, message: "not friends"});
+        }
+    })
+})
+
 module.exports = router;

@@ -74,3 +74,15 @@ module.exports.getFriendsList = function(id, callback) {
     }
     AcceptRequest.find(query, callback);
 }
+
+module.exports.isFriend = function(friend, user, callback) {
+    //console.log("friend: " + friend);
+    //console.log("user: " + user);
+    let query = {
+        $or: [
+          { $and: [{"user1.username": friend }, {"user2.username": user}] },
+          { $and: [{"user1.username": user }, {"user2.username": friend}] }
+      ]
+    }
+    AcceptRequest.find(query, callback);
+}

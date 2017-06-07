@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { DatePickerModule } from 'ng2-datepicker';
 import { CollapseDirective, BsDropdownModule, TypeaheadModule, ModalModule, TabsModule } from 'ngx-bootstrap';
@@ -20,11 +20,12 @@ import { LogComponent } from './components/readings/log/log.component';
 import { FriendListComponent } from './components/friends/friendlist/friendlist.component';
 import { AddFriendComponent } from './components/friends/add-friend/add-friend.component';
 import { PendingFriendComponent } from './components/friends/pendingfriend/pendingfriend.component';
-//import { FriendProfileComponent } from './components/friends/friendprofile/friendprofile.component';
+import { FriendProfileComponent } from './components/friends/friendprofile/friendprofile.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { FriendGuard } from './guards/friend.guard';
 import { ReadingListService } from './services/readinglist.service';
 import { FriendService } from './services/friend.service';
 
@@ -37,7 +38,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent},
   { path: 'friend', component: FriendListComponent, canActivate: [AuthGuard] },
-  //{ path: 'friend/:username', component: FriendProfileComponent, canShow: [AuthGuard] }
+  { path: 'friend/:username', component: FriendProfileComponent, canActivate: [FriendGuard] }
 ]
 
 @NgModule({
@@ -55,8 +56,8 @@ const appRoutes: Routes = [
     FriendListComponent,
     AddFriendComponent,
     PendingFriendComponent,
-    ContactComponent//,
-    //FriendProfileComponent
+    ContactComponent,
+    FriendProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +71,7 @@ const appRoutes: Routes = [
     ModalModule.forRoot(),
     TabsModule.forRoot()
   ],
-  providers: [ValidateService, AuthService, AuthGuard, ReadingListService, FriendService],
+  providers: [ValidateService, AuthService, AuthGuard, FriendGuard, ReadingListService, FriendService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

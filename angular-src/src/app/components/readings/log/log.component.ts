@@ -22,7 +22,8 @@ export class LogComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.readingList.getReadingLog().subscribe(reading => {
+    let user = JSON.parse(localStorage.getItem('user'));
+    this.readingList.getReadingLog(user).subscribe(reading => {
       let newobject = this.prettyDate(reading.reading);
       this.log = newobject;
       this.log.objSort("formatted",-1);

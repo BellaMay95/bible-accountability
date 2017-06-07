@@ -1,0 +1,6 @@
+<h2 class="page-header">{{ friend.name }} -- {{ friend.username }}</h2>
+
+<h4>Reading Log</h4>
+<div class="list-group">
+  <li class="list-group-item" *ngFor="let reading of friendReading">Date: {{reading.date.prettydate}} Text: {{reading.book}} {{reading.chapter}} 
+</div>

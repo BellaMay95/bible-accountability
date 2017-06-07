@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class FriendService {
   authToken: any;
+  friend: boolean;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private route: ActivatedRoute) { }
 
   getUserList() {
     let headers = new Headers();
@@ -79,12 +81,31 @@ export class FriendService {
     return this.http.get('friend/getfriends', {headers: headers}).map(res => res.json());
   }
 
+  getFriendProfile(friend) {
+    //let user = JSON.parse(localStorage.getItem('user'));
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    headers.append('User_Name', friend);
+    //return this.http.get('http://localhost:8080/users/getfriendprofile', {headers: headers}).map(res => res.json());
+    return this.http.get('users/getfriendprofile', {headers: headers}).map(res => res.json());
+  }
+
   loadToken() {
     const token = localStorage.getItem('id_token');
     this.authToken = token;
   }
 
-  isFriend() {
-
+  checkFriend(friendName, userName) {
+    //alert(friendName + " : " + userName);
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    headers.append('friend_name', friendName);
+    headers.append('user_name', userName);
+    //return this.http.get('http://localhost:8080/friend/isfriend', {headers: headers}).map(res => res.json());
+    return this.http.get('friend/isfriend', {headers: headers}).map(res => res.json());
   }
 }

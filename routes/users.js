@@ -110,6 +110,20 @@ router.get('/userlist', (req, res, next) => {
             res.json({UserList: user});
         }
     })
-})
+});
+
+router.get('/getfriendprofile', (req, res, next) => {
+    let friend = req.headers.user_name
+    User.getUserByUsername(friend, (err, user) => {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        else {
+            user.password = undefined;
+            res.json({friend: user});
+        }
+    })
+});
 
 module.exports = router;

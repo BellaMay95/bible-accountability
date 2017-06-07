@@ -12,5 +12,6 @@
 <h4>Friends</h4>
 <div class="list-group">
   <span class="list-group-item" *ngIf="friendArray.length == 0">You have no friends. Send a friend request or two!</span>
-  <span class="list-group-item" *ngFor="let friend of friendArray">{{friend.name}} -- {{friend.username}}</span>
+  <span class="list-group-item" *ngFor="let friend of friendArray">{{friend.name}} -- {{friend.username}} 
+    <button class="btn btn-default btn-xs pull-right" [routerLink]="['/friend', friend.username]">View Profile</button></span>
 </div>

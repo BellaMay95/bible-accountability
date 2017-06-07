@@ -53,13 +53,12 @@ export class ReadingListService {
     return this.http.post('reading/remove', item, {headers: headers}).map(res => res.json());
   }
 
-  getReadingLog() {
-    let user = JSON.parse(localStorage.getItem('user'));
+  getReadingLog(user) {
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    headers.append('User_Id', user.id);
+    headers.append('User_Id', user._id);
     //return this.http.get('http://localhost:8080/reading/load', {headers: headers}).map(res => res.json());
     return this.http.get('reading/load', {headers: headers}).map(res => res.json());
   }

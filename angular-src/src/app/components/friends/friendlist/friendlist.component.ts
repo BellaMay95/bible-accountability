@@ -34,4 +34,7 @@ export class FriendListComponent implements OnInit {
     };
   }
 
+  viewProfile(friend) {
+    alert("We'll get to " + friend.name + "'s profile later");
+  }
 }
