@@ -31,7 +31,6 @@ export class AuthService {
     headers.append('Content-Type', 'application/json');
     //return this.http.get('http://localhost:8080/users/profile', {headers: headers}).map(res => res.json());
     return this.http.get('users/profile', {headers: headers}).map(res => res.json());
-
   }
 
   loadToken() {
