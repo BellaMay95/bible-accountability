@@ -12,7 +12,10 @@ import '../../../services/objSort';
   styleUrls: ['./friendprofile.component.css']
 })
 export class FriendProfileComponent implements OnInit {
-  friend: Object = {};
+  friend = {
+    username: "",
+    name: ""
+  };
   friendReading;
 
   constructor(private route: ActivatedRoute, private friendService: FriendService, private readingList: ReadingListService) { }
