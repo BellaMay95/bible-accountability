@@ -98,7 +98,6 @@ export class FriendService {
   }
 
   checkFriend(friendName, userName) {
-    //alert(friendName + " : " + userName);
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);

@@ -14,6 +14,7 @@ import '../../../services/objSort';
 export class LogComponent implements OnInit {
   //user: Object;
   log: any;
+  length: number = 0;
 
   constructor(
     private flashMessage: FlashMessagesService,
@@ -26,6 +27,7 @@ export class LogComponent implements OnInit {
     this.readingList.getReadingLog(user).subscribe(reading => {
       let newobject = this.prettyDate(reading.reading);
       this.log = newobject;
+      this.length = newobject.length;
       this.log.objSort("formatted",-1);
     }),
     err => {

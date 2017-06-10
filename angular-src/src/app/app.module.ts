@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { DatePickerModule } from 'ng2-datepicker';
-import { CollapseModule, BsDropdownModule, TypeaheadModule, ModalModule, TabsModule } from 'ngx-bootstrap';
+import { AlertModule, CollapseModule, BsDropdownModule, TypeaheadModule, ModalModule, TabsModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -28,6 +28,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { FriendGuard } from './guards/friend.guard';
 import { ReadingListService } from './services/readinglist.service';
 import { FriendService } from './services/friend.service';
+import { ContactService } from './services/contact.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -69,9 +70,10 @@ const appRoutes: Routes = [
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     TabsModule.forRoot(),
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    AlertModule.forRoot()
   ],
-  providers: [ValidateService, AuthService, AuthGuard, FriendGuard, ReadingListService, FriendService],
+  providers: [ValidateService, AuthService, AuthGuard, FriendGuard, ReadingListService, FriendService, ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

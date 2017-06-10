@@ -22,6 +22,11 @@ export class AddFriendComponent implements OnInit {
   
   public userlist: any[];
   public userSelect: any;
+  public myuser: any;
+
+  public friendList :any = [];
+  public friendArray :any = [];
+  public isFriend: boolean;
 
   @ViewChild('autoShownModal') public autoShownModal:ModalDirective;
   public isModalShown:boolean = false;
@@ -30,10 +35,10 @@ export class AddFriendComponent implements OnInit {
   constructor(private friendService: FriendService, private router: Router, private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
+    this.myuser = JSON.parse(localStorage.getItem('user'));
     this.friendService.getUserList().subscribe(user => {
       this.userlist = user.UserList;
-      let myuser = JSON.parse(localStorage.getItem('user'));
-      let myname = myuser.username;
+      let myname = this.myuser.username;
       for (let i = 0; i < this.userlist.length; i++) {
         if(this.userlist[i].username == myname)
           this.userlist.splice(i, 1);
@@ -43,18 +48,33 @@ export class AddFriendComponent implements OnInit {
       console.log(err);
       return false;
     };
-    this.userdataSource = Observable
-      .create((observer: any) => {
+
+    this.userdataSource = Observable.create((observer: any) => {
         // Runs on every search
         observer.next(this.asyncSelectedUser);
-      })
-      .mergeMap((token: string) => this.getUsersAsObservable(token));
-    this.emaildataSource = Observable
-      .create((observer: any) => {
+      }).mergeMap((token: string) => this.getUsersAsObservable(token));
+
+    this.emaildataSource = Observable.create((observer: any) => {
         // Runs on every search
         observer.next(this.asyncSelectedEmail);
-      })
-      .mergeMap((token: string) => this.getEmailsAsObservable(token));
+      }).mergeMap((token: string) => this.getEmailsAsObservable(token));
+
+    this.friendService.getFriends().subscribe(friends => {
+      this.friendList = friends.list;
+      let user = JSON.parse(localStorage.getItem('user'));
+      for (let i = 0; i < this.friendList.length; i++) {
+        if (this.friendList[i].user1.id == user.id) {
+          this.friendArray[i] = this.friendList[i].user2;
+        }
+        else {
+          this.friendArray[i] = this.friendList[i].user1;
+        }
+      }
+    }),
+    err => {
+      console.log(err);
+      return false;
+    };
   }
 
   public getUsersAsObservable(token: string): Observable<any> {
@@ -92,7 +112,23 @@ export class AddFriendComponent implements OnInit {
   public typeaheadOnSelect(e: TypeaheadMatch): void {
     //e.item is the user object. e.value is the selected value (which I don't think I need)
     this.userSelect = e.item;
-    //alert(JSON.stringify(this.userSelect));
+    let friendName = this.userSelect.username;
+
+    if (this.friendArray.length == 0) {
+        this.isFriend = false;
+    }
+    else {
+        for(let i = 0; i < this.friendArray.length; i++) {
+          if (this.friendArray[i].username == friendName) {
+            this.isFriend = true;
+            break;
+          }
+          else {
+            this.isFriend = false;
+          }
+        }
+    }
+  
     this.showModal();
   }
 
@@ -101,6 +137,7 @@ export class AddFriendComponent implements OnInit {
   }
  
   public hideModal():void {
+    this.isFriend = undefined;
     this.autoShownModal.hide();
   }
  
@@ -127,6 +164,6 @@ export class AddFriendComponent implements OnInit {
 
   public viewProfile() {
     let friendName = this.userSelect.username;
-    //this.router.navigate(['/friend/' + friendName]);
+    this.router.navigate(['/friend/' + friendName]);
   }
 }

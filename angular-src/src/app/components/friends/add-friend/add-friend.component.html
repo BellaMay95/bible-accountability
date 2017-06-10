@@ -52,8 +52,8 @@
         <p>Email: {{userSelect.email}}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-right" (click)="addFriend()">Add Friend</button>
-        <button type="button" class="btn btn-default pull-right" (click)="viewProfile()">View Profile</button>
+        <button type="button" class="btn btn-default pull-right" *ngIf="isFriend === false" (click)="addFriend()">Add Friend</button>
+        <button type="button" class="btn btn-default pull-right" *ngIf="isFriend === true" (click)="viewProfile()">View Profile</button>
       </div>
     </div>
   </div>

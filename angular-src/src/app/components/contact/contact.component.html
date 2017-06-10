@@ -1,3 +1,38 @@
-<p>
-  contact works!
-</p>
+<h2 class="page-header">Contact Us!</h2>
+<!--<h4>Bug Reports or Feature Requests? Or do you just want to send us a message? Fill out the form below.</h4>-->
+<div class="well">
+  <form (submit)="onContactSubmit()">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" [(ngModel)]="emailForm.username" name="username" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Message Type</label>
+      <!--<div class="btn-group" class="form-control" name="type" dropdown placement="bottom right">
+        <a dropdownToggle class="dropdown-toggle">{{ type }}</a>
+        <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+          <li role="menuitem"><a class="dropdown-item" (click)="typeSelect('Bug Report')">Bug Report</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="typeSelect('Feature Request')">Feature Request</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="typeSelect('Other Feedback')">Other Feedback</a></li>
+        </ul>
+      </div>-->
+      <div class="btn-group form-control" dropdown placement="bottom right">
+        <a dropdownToggle class="dropdown-toggle">{{ emailForm.type }}</a>
+        <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" style="width: 100%" role="menu">
+          <li role="menuitem"><a class="dropdown-item" (click)="typeSelect('Bug Report')">Bug Report</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="typeSelect('Feature Request')">Feature Request</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="typeSelect('Other Feedback')">Other Feedback</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Subject</label>
+      <input type="text" [(ngModel)]="emailForm.subject" name="subject" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea [(ngModel)]="emailForm.content" name="content" rows="5" class="form-control"></textarea>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit">
+  </form>
+</div>
