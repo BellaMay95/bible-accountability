@@ -14,7 +14,9 @@ import '../../../services/objSort';
 export class FriendProfileComponent implements OnInit {
   friend = {
     username: "",
-    name: ""
+    name: "",
+    id: "",
+    _id: ""
   };
   friendReading;
 
@@ -25,7 +27,8 @@ export class FriendProfileComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem('user'));
     this.friendService.getFriendProfile(friendName).subscribe(friends => {
       this.friend = friends.friend;
-      //console.log(this.friend);
+      this.friend.id = this.friend._id;
+      this.friend._id = undefined;
       this.readingList.getReadingLog(this.friend).subscribe(reading => {
         let newobject = this.prettyDate(reading.reading);
         this.friendReading = newobject;

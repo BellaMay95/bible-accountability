@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
+
 const config = require('./config/database.js');
 
 //Connect to database
@@ -21,6 +22,7 @@ const app = express();
 const users = require('./routes/users');
 const reading = require('./routes/reading');
 const friend = require('./routes/friend');
+const contact = require('./routes/contact');
 
 //Port Number
 //const port = 3000;
@@ -44,6 +46,7 @@ require('./config/passport')(passport);
 app.use('/users', users);
 app.use('/reading', reading);
 app.use('/friend', friend);
+app.use('/contact', contact);
 
 //index route
 app.get('/', (req, res) => {

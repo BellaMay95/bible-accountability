@@ -7,4 +7,5 @@
     <button class="btn btn-link"(click)="editEntry(item)">Date: {{item.date.prettydate}} Text: {{item.book}} {{item.chapter}} </button>
     <button class="btn btn-sm pull-right" (click)="removeEntry(item)"><span class="glyphicon glyphicon-remove"></span></button>
   </span>
+  <span class="list-group-tem" *ngIf="length == 0">You haven't logged any readings. Get started now!</span>
 </div>

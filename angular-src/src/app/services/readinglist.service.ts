@@ -58,7 +58,7 @@ export class ReadingListService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    headers.append('User_Id', user._id);
+    headers.append('User_Id', user.id);
     //return this.http.get('http://localhost:8080/reading/load', {headers: headers}).map(res => res.json());
     return this.http.get('reading/load', {headers: headers}).map(res => res.json());
   }

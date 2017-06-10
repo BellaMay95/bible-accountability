@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   username: String;
   email: String;
   password: String;
+  confirmPassword: String;
 
   constructor(
     private validateService: ValidateService, 
@@ -31,7 +32,8 @@ export class RegisterComponent implements OnInit {
       name: this.name,
       email: this.email,
       username: this.username,
-      password: this.password
+      password: this.password,
+      confirmPassword: this.confirmPassword
     }
 
     //Required Fields
@@ -45,6 +47,12 @@ export class RegisterComponent implements OnInit {
     if(!this.validateService.validateEmail(user.email)) {
       //console.log("Please enter a valid email");
       this.flashMessage.show("Please enter a valid email", {cssClass: 'alert-danger', timeout: 10000});
+      return false;
+    }
+
+    if(!this.validateService.validateMatchingPasswords(user.password, user.confirmPassword)) {
+      //console.log("Please enter a valid email");
+      this.flashMessage.show("Your passwords don't match!", {cssClass: 'alert-danger', timeout: 10000});
       return false;
     }
 

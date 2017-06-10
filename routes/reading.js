@@ -42,7 +42,7 @@ router.post('/remove', (req, res, next) => {
 //Load History
 router.get('/load', (req, res, next) => {
     const id = req.headers.user_id;
-
+    //console.log("user id: " + id);
     Reading.getReadingList(id, (err, reading) => {
         if (err) {
             console.log(err);

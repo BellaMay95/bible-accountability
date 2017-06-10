@@ -6,13 +6,13 @@ const Friend = require('../models/friends');
 
 
 router.post('/sendRequest', (req, res, next) => {
-    console.log(req.body.sendUser);
+    //console.log(req.body.sendUser);
     let request = new Object;
     request.sendUser = req.body.sendUser;
     request.friendUser = req.body.friendUser;
     request.timestamp = req.body.timestamp;
 
-    console.log("req object: " + JSON.stringify(request));
+    //console.log("req object: " + JSON.stringify(request));
 
     Friend.addPending(request, (err, reading) => {
         if (err) {
@@ -102,6 +102,7 @@ router.get('/getfriends', (req, res, next) => {
 });
 
 router.get('/isfriend', (req, res, next) => {
+    //console.log("in isfriend function");
     //console.log(req.headers);
     const friendName = req.headers.friend_name;
     const userName = req.headers.user_name;
