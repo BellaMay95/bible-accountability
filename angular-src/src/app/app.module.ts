@@ -29,6 +29,7 @@ import { FriendGuard } from './guards/friend.guard';
 import { ReadingListService } from './services/readinglist.service';
 import { FriendService } from './services/friend.service';
 import { ContactService } from './services/contact.service';
+import { NotesComponent } from './components/notes/notes.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -57,7 +58,8 @@ const appRoutes: Routes = [
     AddFriendComponent,
     PendingFriendComponent,
     ContactComponent,
-    FriendProfileComponent
+    FriendProfileComponent,
+    NotesComponent
   ],
   imports: [
     BrowserModule,

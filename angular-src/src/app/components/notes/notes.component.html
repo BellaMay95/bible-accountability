@@ -1,0 +1,32 @@
+<h3>
+  Notes
+</h3>
+
+<div class="list-group">
+  <span class="list-group-item row" *ngFor="let item of notes">
+    <button class="btn btn-link col-xs-11" style="white-space: normal; word-break: normal" (click)="viewEntry(item)">Date: {{item.date.prettydate}} Text: {{item.book}} {{item.chapter}} Title: {{item.title}}</button>
+    <button class="btn btn-sm pull-right col-xs-1 glyphicon glyphicon-remove" style="white-space: normal;" (click)="removeEntry(item)"></button>
+  </span>
+  <span *ngIf="length == 0">You haven't added any notes. Get started now!</span>
+</div>
+
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{ note.title }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-control" [(ngModel)]="note.note" [disabled]="noteDisable">{{ note.note }}</textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" *ngIf="noteDisable" class="btn btn-default pull-left" (click)="editNote()">Edit Note</button>
+        <button type="button" *ngIf="!noteDisable" class="btn btn-default pull-left" (click)="hideModal()">Cancel Edit</button>
+        <button type="button" *ngIf="!noteDisable" class="btn btn-primary pull-right" (click)="saveNote()">Save Note</button>
+      </div>
+    </div>
+  </div>
+</div>

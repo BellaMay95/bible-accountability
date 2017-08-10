@@ -88,6 +88,24 @@ router.post('/accrequest', (req, res, next) => {
     });
 });
 
+router.post('/rejfriend', (req, res, next) => {
+    //console.log(req.body);
+    let request = {
+        id1: req.body.sendUser._id,
+        id2: req.body.friendUser._id
+    };
+
+    Friend.rejectFriend(request, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.json({success: false, message: "Failed to remove friend!"});
+        }
+        else {
+            res.json({success: true, message: "Friend removed successfully!"});
+        }
+    })
+})
+
 router.get('/getfriends', (req, res, next) => {
     const id = req.headers.user_id;
     Friend.getFriendsList(id, (err, list) => {

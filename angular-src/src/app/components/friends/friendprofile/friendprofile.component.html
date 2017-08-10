@@ -1,6 +1,38 @@
 <h2 class="page-header">{{ friend.name }} -- {{ friend.username }}</h2>
 
-<h4>Reading Log</h4>
-<div class="list-group">
-  <li class="list-group-item" *ngFor="let reading of friendReading">Date: {{reading.date.prettydate}} Text: {{reading.book}} {{reading.chapter}} 
-</div>
+<tabset>
+	<tab heading="Reading Log">
+		<h3>{{ friend.name }}'s Reading History</h3>
+		<div class="list-group">
+		<li class="list-group-item" *ngFor="let reading of friendReading">Date: {{reading.date.prettydate}} Text: {{reading.book}} {{reading.chapter}} 
+		</div>
+	</tab>
+	<tab heading="Reading Notes">
+		<h3>{{ friend.name }}'s Reading Notes</h3>
+		<div class="list-group">
+		<span class="list-group-item" *ngFor="let item of notes">
+			<button class="btn btn-link" style="white-space: normal;" (click)="viewEntry(item)">Date: {{item.date.prettydate}} Text: {{item.book}} {{item.chapter}} Title: {{item.title}}</button>
+			<!--<button class="btn btn-sm pull-right col-xs-1" (click)="removeEntry(item)"><span class="glyphicon glyphicon-remove"></span></button>-->
+		</span>
+		<span *ngIf="length == 0">Your friend hasn't added any notes. You should encourage them to start adding some!</span>
+		</div>
+
+		<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title pull-left">{{ note.title }}</h4>
+				<button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<textarea class="form-control" [(ngModel)]="note.note" [disabled]="noteDisable">{{ note.note }}</textarea>
+			</div>
+			<div class="modal-footer">
+			</div>
+			</div>
+		</div>
+		</div>
+	</tab>
+</tabset>

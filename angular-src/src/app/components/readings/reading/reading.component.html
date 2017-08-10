@@ -1,8 +1,8 @@
 <div class="well">
-  <label style='padding-right: 10px'>Enter Your Reading!</label>
+  <h3>Enter Your Reading!</h3>
   <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
   <div class="btn-group" dropdown>
-    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle" style="margin-top: 5px;">
       {{selTest}} <span class="caret"></span>
     </button>
     <ul *dropdownMenu class="dropdown-menu" role="menu">
@@ -11,7 +11,7 @@
     </ul>
   </div>
   <div class="btn-group" dropdown [isDisabled]="selTest == 'Select Testament'">
-    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle" style="margin-top: 5px;">
       {{selBook}} <span class="caret"></span>
     </button>
     <ul *dropdownMenu class="dropdown-menu" role="menu">
@@ -19,16 +19,19 @@
       <li role="menuitem" *ngIf="selTest == 'New Testament'"><a class="dropdown-item" *ngFor="let book of newTestament" (click)="selectBook(book.name)">{{book.name}}</a></li>
     </ul>
   </div>
-  <div class="btn-group" dropdown [isDisabled]="selBook == 'Select Book'">
-    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+  <div class="btn-group" dropdown [isDisabled]="selBook == 'Select Book'" >
+    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle" style="margin-top: 5px;">
       {{selChapter}} <span class="caret"></span>
     </button>
     <ul *dropdownMenu class="dropdown-menu" role="menu">
       <li role="menuitem"><a class="dropdown-item" *ngFor="let chapter of numChapters" (click)="selectChapter(chapter)">{{chapter}}</a></li>
     </ul>
   </div>
-
-  <button class="btn btn-primary" [disabled]="selChapter == 'Select Chapter' || date == undefined" (click)="saveEntry()">Log Reading</button>
+  <label class="checkbox-inline"><input type="checkbox" [(ngModel)]="showNotes">Add Note</label>
+  <div *ngIf="showNotes" class="form-group">
+    <label>Note title: </label> <input type="text" [(ngModel)]="noteTitle" class="form-control">
+    <label>Enter note here: </label><textarea type="text" rows="5" [(ngModel)]="noteBody" class="form-control"></textarea>
+  </div>
+  <br>
+  <button class="btn btn-primary" [disabled]="selChapter == 'Select Chapter' || date == undefined || (showNotes && (!noteTitle || !noteBody))" (click)="saveEntry()" style="margin-top: 5px;">Log Reading</button>
 </div>
-
-<!--<li class="divider dropdown-divider"></li>-->

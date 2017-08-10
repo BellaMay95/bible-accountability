@@ -65,6 +65,17 @@ module.exports.acceptRequest = function(friends, callback) {
     request.save(callback);
 }
 
+module.exports.rejectFriend = function(data, callback) {
+    //console.log(data);
+    let query = {
+        $or: [
+          { $and: [{"user1._id": data.id1 }, {"user2._id": data.id2}] },
+          { $and: [{"user1._id": data.id2 }, {"user2._id": data.id1}] }
+      ]
+    }
+    AcceptRequest.findOneAndRemove(query, callback);
+}
+
 module.exports.getFriendsList = function(id, callback) {
     let query = {
       $or: [

@@ -17,13 +17,15 @@ import { AuthService } from '../../../services/auth.service';
 export class ReadingComponent implements OnInit {
   date: DateModel;
   options: DatePickerOptions;
-  user: any;
   oldTestament: any;
   newTestament: any;
   numChapters = [];
   selTest: string = "Select Testament";
   selBook: string = "Select Book";
   selChapter: any = "Select Chapter";
+  showNotes :boolean;
+  noteTitle :string;
+  noteBody: string;
 
   constructor( 
     private readingList: ReadingListService, 
@@ -34,13 +36,6 @@ export class ReadingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.getProfile().subscribe(profile => {
-      this.user = profile.user;
-    }),
-    err => {
-      console.log(err);
-      return false;
-    }
     this.readingList.getOldTestament().subscribe(books => {
         this.oldTestament = books.stash;
       }),
@@ -93,7 +88,8 @@ export class ReadingComponent implements OnInit {
       date: this.date,
       book: this.selBook,
       chapter: this.selChapter,
-      id: this.user.id
+      title: this.noteTitle,
+      note: this.noteBody
     }
 
     this.readingList.saveReading(reading).subscribe(data => {

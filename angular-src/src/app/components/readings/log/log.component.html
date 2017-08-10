@@ -3,9 +3,9 @@
 </h3>
 
 <div class="list-group">
-  <span class="list-group-item" *ngFor="let item of log">
-    <button class="btn btn-link"(click)="editEntry(item)">Date: {{item.date.prettydate}} Text: {{item.book}} {{item.chapter}} </button>
-    <button class="btn btn-sm pull-right" (click)="removeEntry(item)"><span class="glyphicon glyphicon-remove"></span></button>
+  <span class="list-group-item row" *ngFor="let item of log">
+    <button class="btn btn-link col-xs-11" style="white-space: normal;" (click)="editEntry(item)">Date: {{item.date.prettydate}} Text: {{item.book}} {{item.chapter}} </button>
+    <button class="btn btn-sm pull-right col-xs-1 glyphicon glyphicon-remove" style="white-space: normal;" (click)="removeEntry(item)"></button>
   </span>
-  <span class="list-group-tem" *ngIf="length == 0">You haven't logged any readings. Get started now!</span>
+  <span *ngIf="length == 0">You haven't logged any readings. Get started now!</span>
 </div>

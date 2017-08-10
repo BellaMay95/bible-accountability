@@ -26,6 +26,8 @@ export class LogComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem('user'));
     this.readingList.getReadingLog(user).subscribe(reading => {
       let newobject = this.prettyDate(reading.reading);
+      //console.log(newobject);
+      //let newobject = reading.reading;
       this.log = newobject;
       this.length = newobject.length;
       this.log.objSort("formatted",-1);
@@ -37,8 +39,12 @@ export class LogComponent implements OnInit {
   }
 
   prettyDate(array) {
+    //console.log(array);
     for (let i = 0; i < array.length; i++) {
+      //console.log(i);
       array[i].date.prettydate = new Date(array[i].date.formatted).toDateString();
+      //console.log(array[i]);
+      //array[i].date.prettydate = array[i].date.formatted.toDateString();
       array[i].formatted = array[i].date.formatted;
     }
 
@@ -46,16 +52,18 @@ export class LogComponent implements OnInit {
   }
 
   removeEntry(item) {
-   // alert("removing entry with id: " + id);
-    this.readingList.removeReading(item).subscribe(data => {
-      if(data.success) {
-        this.flashMessage.show(data.message, {cssClass: 'alert-success', timeout: 10000});
-        this.router.navigate(['/home']);
-      }
-      else {
-        this.flashMessage.show(data.message, {cssClass: 'alert-danger', timeout: 10000});
-      }
-    });
+    let result = confirm("Are you SURE you wish to remove this reading entry?");
+    if (result) {
+      this.readingList.removeReading(item).subscribe(data => {
+        if(data.success) {
+          this.flashMessage.show(data.message, {cssClass: 'alert-success', timeout: 10000});
+          this.router.navigate(['/home']);
+        }
+        else {
+          this.flashMessage.show(data.message, {cssClass: 'alert-danger', timeout: 10000});
+        }
+      });
+    }
   }
 
   editEntry(item) {
