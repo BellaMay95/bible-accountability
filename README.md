@@ -8,12 +8,13 @@ This app allows Bible accountability partners to log their readings and view the
 	* Log Readings
 	* View their own log history
 	* Search for friends
-	*2-way friend requests/confirm	
-	*View friends' profile and reading log
-	*Contact page for Bug Reports/Feature Requests/Other Feedback
+	* 2-way friend requests/confirm/remove
+	* View friends' profile, reading log, and reading notes
+	* Contact page for Bug Reports/Feature Requests/Other Feedback
+	* Write notes about a day's reading and view friends' notes
 	
 # IN FUTURE RELEASES (IN NO SPECIFIC ORDER) #
-	* Write notes about a day's reading (or just a particular passage)
+	* Badge notifications (maybe desktop notifications?) when you receive a friend request/friend updates content/etc.
 	* Ability to have separate lists of reading/notes and only share specific content with a friend
 	* Read the Bible directly from the site
 	* Add a custom Bible reading plan to follow
