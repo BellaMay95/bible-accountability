@@ -162,6 +162,29 @@ export class AddFriendComponent implements OnInit {
     });
   }
 
+  public removeFriend() {
+    let result = confirm("Are you sure you want to remove " + this.userSelect.name + " from your friends' list?");
+    if (confirm) {
+      //alert(JSON.stringify(this.userSelect));
+      this.userSelect.id = this.userSelect._id;
+      this.userSelect._id = undefined;
+      let friendObj = this.userSelect;
+      //alert(JSON.stringify(friendObj));
+      this.friendService.removeFriend(friendObj).subscribe(data => {
+        if(data.success) {
+          this.flashMessage.show(data.message, {cssClass: 'alert-success', timeout: 10000});
+          this.router.navigate(['/home']);
+        }
+        else {
+          this.flashMessage.show(data.message, {cssClass: 'alert-danger', timeout: 10000});
+        }
+      });
+    }
+    else {
+      return;
+    }
+  }
+
   public viewProfile() {
     let friendName = this.userSelect.username;
     this.router.navigate(['/friend/' + friendName]);

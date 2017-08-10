@@ -120,7 +120,8 @@ router.get('/getfriendprofile', (req, res, next) => {
             throw err;
         }
         else {
-            user.password = undefined;
+            user.password = "";
+            //console.log(user);
             res.json({friend: user});
         }
     })

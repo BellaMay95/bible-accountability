@@ -27,7 +27,7 @@
     "core-js": "^2.4.1",
     "emailjs": "^1.0.9",
     "ng2-datepicker": "^1.8.3",
-    "ngx-bootstrap": "^1.7.0",
+    "ngx-bootstrap": "^1.7.1",
     "ngx-dropdown": "0.0.22",
     "nodemailer": "^4.0.1",
     "rxjs": "^5.1.0",

@@ -34,6 +34,19 @@ export class FriendService {
     return this.http.post('friend/sendRequest', requestObj, {headers: headers}).map(res => res.json());
   }
 
+  removeFriend(friend) {
+    let user = JSON.parse(localStorage.getItem('user'));
+    let requestObj: Object = {
+      sendUser: user,
+      friendUser: friend
+    };
+    //alert(JSON.stringify(requestObj));
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    // /return this.http.post('http://localhost:8080/friend/rejfriend', requestObj, {headers: headers}).map(res => res.json());
+    return this.http.post('friend/rejfriend', requestObj, {headers: headers}).map(res => res.json());
+  }
+
   getSubReq() {
     let user = JSON.parse(localStorage.getItem('user'));
     let headers = new Headers();

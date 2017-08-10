@@ -33,8 +33,24 @@ export class FriendListComponent implements OnInit {
       return false;
     };
   }
-
-  viewProfile(friend) {
-    alert("We'll get to " + friend.name + "'s profile later");
+  public removeFriend(friendObj) {
+    let result = confirm("Are you sure you want to remove " + friendObj.name + " from your friends' list?");
+    if (result) {
+      friendObj.id = friendObj._id;
+      friendObj._id = undefined;
+      //alert(JSON.stringify(friendObj));
+      this.friendService.removeFriend(friendObj).subscribe(data => {
+        if(data.success) {
+          this.flashMessage.show(data.message, {cssClass: 'alert-success', timeout: 10000});
+          this.router.navigate(['/home']);
+        }
+        else {
+          this.flashMessage.show(data.message, {cssClass: 'alert-danger', timeout: 10000});
+        }
+      });
+    }
+    else {
+      return;
+    }
   }
 }

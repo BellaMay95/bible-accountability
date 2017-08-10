@@ -8,14 +8,6 @@
     </div>
     <div class="form-group">
       <label>Message Type</label>
-      <!--<div class="btn-group" class="form-control" name="type" dropdown placement="bottom right">
-        <a dropdownToggle class="dropdown-toggle">{{ type }}</a>
-        <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-          <li role="menuitem"><a class="dropdown-item" (click)="typeSelect('Bug Report')">Bug Report</a></li>
-          <li role="menuitem"><a class="dropdown-item" (click)="typeSelect('Feature Request')">Feature Request</a></li>
-          <li role="menuitem"><a class="dropdown-item" (click)="typeSelect('Other Feedback')">Other Feedback</a></li>
-        </ul>
-      </div>-->
       <div class="btn-group form-control" dropdown placement="bottom right">
         <a dropdownToggle class="dropdown-toggle">{{ emailForm.type }}</a>
         <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" style="width: 100%" role="menu">

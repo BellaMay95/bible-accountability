@@ -14,7 +14,6 @@ export class ReadingListService {
   constructor(private http: Http) { }
 
   getOldTestament() {
-    //return this.oldTestament;
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
@@ -23,7 +22,6 @@ export class ReadingListService {
     return this.http.get('reading/oldbooks', {headers: headers}).map(res => res.json());
   }
   getNewTestament() {
-    //return this.newTestament;
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
@@ -61,5 +59,29 @@ export class ReadingListService {
     headers.append('User_Id', user.id);
     //return this.http.get('http://localhost:8080/reading/load', {headers: headers}).map(res => res.json());
     return this.http.get('reading/load', {headers: headers}).map(res => res.json());
+  }
+
+  getNoteLog(user) {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    headers.append('User_Id', user.id);
+    //return this.http.get('http://localhost:8080/reading/loadnotes', {headers: headers}).map(res => res.json());
+    return this.http.get('reading/loadnotes', {headers: headers}).map(res => res.json());
+  }
+
+  removeNote(item) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    //return this.http.post('http://localhost:8080/reading/removenote', item, {headers: headers}).map(res => res.json());
+    return this.http.post('reading/removenote', item, {headers: headers}).map(res => res.json());
+  }
+
+  editNote(item) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    //return this.http.post('http://localhost:8080/reading/editnote', item, {headers: headers}).map(res => res.json());
+    return this.http.post('reading/editnote', item, {headers: headers}).map(res => res.json());
   }
 }

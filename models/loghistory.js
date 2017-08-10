@@ -36,6 +36,14 @@ const ReadingSchema = mongoose.Schema({
     user_id: {
         type: String,
         require: true
+    },
+    title: {
+        type: String,
+        require: false
+    },
+    note: {
+        type: String,
+        require: false
     }
 });
 
@@ -52,4 +60,26 @@ module.exports.removeReading = function(id, callback) {
 module.exports.getReadingList = function(id, callback) {
     const query = {user_id: id};
     Reading.find(query, callback)//.sort({date: -1}, callback);
+}
+
+module.exports.getNoteList = function(id, callback) {
+    //const query = {user_id: id};
+    const query = {
+        $and: [
+          { user_id: id },
+          { title: {$exists: true } },
+          { note: {$exists: true }}
+      ]
+    }
+    Reading.find(query, callback)//.sort({date: -1}, callback);
+}
+
+module.exports.removeNote = function(id, callback) {
+    const update = { $unset: { title: "", note: null } }
+    Reading.findByIdAndUpdate(id, update, callback);
+}
+
+module.exports.editNote = function(data, callback) {
+    const update = { note: data.note };
+    Reading.findByIdAndUpdate(data.id, update, callback)
 }
